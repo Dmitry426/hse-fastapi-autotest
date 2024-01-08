@@ -1,4 +1,4 @@
-from src.conftest import client, reference_schema, openapi_schema
+from hse_fastapi_autotest.conftest import client, reference_schema, openapi_schema
 
 
 def test_hello_world(client):

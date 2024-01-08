@@ -2,9 +2,9 @@ __all__ = "OpenApiParser"
 
 from typing import Dict, Union
 
-from src.conftest import reference_schema
-from src.services.abstract_schema_parser import AbstractOpenApiParser
-from src.settings.loggger import logger
+from hse_fastapi_autotest.conftest import reference_schema
+from hse_fastapi_autotest.services.abstract_schema_parser import AbstractOpenApiParser
+from hse_fastapi_autotest.settings.loggger import logger
 
 
 class OpenApiParser(AbstractOpenApiParser):

@@ -165,4 +165,4 @@ cython_debug/
 /.idea/inspectionProfiles/Project_Default.xml
 /.idea/vcs.xml
 /.idea/.gitignore
-/src/helpers/tzpketdev/
+/hse_fastapi_autotest/helpers/tzpketdev/

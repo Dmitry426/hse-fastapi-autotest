@@ -7,7 +7,7 @@ import pytest
 from fastapi.testclient import TestClient
 import yaml
 
-from src.services.app_finder import traverse_and_import
+from hse_fastapi_autotest.services.app_finder import traverse_and_import
 
 path = Path(__file__).parent
 app = traverse_and_import(path)

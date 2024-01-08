@@ -2,9 +2,9 @@ from typing import Dict
 
 import pytest
 
-from src.services.openapi_schema_parser import OpenApiParser
-from src.settings.loggger import logger
-from src.conftest import client, reference_schema, openapi_schema
+from hse_fastapi_autotest.services.openapi_schema_parser import OpenApiParser
+from hse_fastapi_autotest.settings.loggger import logger
+from hse_fastapi_autotest.conftest import client, reference_schema, openapi_schema
 
 
 class TestEndToEnd:

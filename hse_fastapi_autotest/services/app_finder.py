@@ -7,7 +7,7 @@ from types import ModuleType
 
 from fastapi import FastAPI
 
-from src.settings.loggger import logger
+from hse_fastapi_autotest.settings.loggger import logger
 
 
 def import_main_module(module_path: str) -> ModuleType:
