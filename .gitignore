@@ -166,3 +166,5 @@ cython_debug/
 /.idea/vcs.xml
 /.idea/.gitignore
 /hse_fastapi_autotest/helpers/tzpketdev/
+/temp_repos/
+/temp_repos/AnyNoth1ng_PEN_HSE_FastApi/

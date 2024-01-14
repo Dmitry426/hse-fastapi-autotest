@@ -4,13 +4,14 @@ from typing import Any, List, Optional
 
 from openapi_parser.enumeration import DataType
 
-DEFAULT_STRING_LENGTH = 8
-
 
 class AbstractBaseGenerator(ABC):
-    def generate_random_value(self, data_type: DataType,
-                              enum_values: List[Any] = None,
-                              selected_value: Optional[Any] = None):
+    def generate_random_value(
+        self,
+        data_type: DataType,
+        enum_values: List[Any] = None,
+        selected_value: Optional[Any] = None,
+    ):
         """
         Generate a random value based on the provided data type and enum values.
 
@@ -26,10 +27,12 @@ class AbstractBaseGenerator(ABC):
 
 
 class BaseGenerator(AbstractBaseGenerator):
-
-    def generate_random_value(self, data_type: DataType, enum_values: List[Any] = None,
-                              selected_value: Optional[Any] = None) -> Any:
-
+    def generate_random_value(
+        self,
+        data_type: DataType,
+        enum_values: List[Any] = None,
+        selected_value: Optional[Any] = None,
+    ) -> Any:
         if selected_value is not None:
             return selected_value
         elif enum_values:

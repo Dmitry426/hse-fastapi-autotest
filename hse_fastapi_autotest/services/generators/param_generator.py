@@ -6,8 +6,9 @@ from hse_fastapi_autotest.services.generators.base_generator import BaseGenerato
 
 
 class ParamGenerator(BaseGenerator):
-    def generate_parameter(self, param: Parameter,
-                           selected_value: Optional[Any] = None) -> Any:
+    def generate_parameter(
+        self, param: Parameter, selected_value: Optional[Any] = None
+    ) -> Any:
         """
         Generate a parameter value based on the provided schema and,
         if applicable, selected value.
@@ -19,8 +20,9 @@ class ParamGenerator(BaseGenerator):
         Returns:
             Any : The generated parameter value.
         """
-        return self.generate_random_value(param.schema.type, param.schema.enum,
-                                          selected_value)
+        return self.generate_random_value(
+            param.schema.type, param.schema.enum, selected_value
+        )
 
     def generate_parameters_dict(self, params: List[Parameter]) -> dict:
         """
