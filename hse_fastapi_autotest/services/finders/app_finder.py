@@ -1,8 +1,8 @@
 __all__ = "traverse_and_import"
 
+import importlib.util
 import logging
 import os
-import importlib.util
 from pathlib import Path
 from types import ModuleType
 
@@ -19,13 +19,14 @@ def import_main_module(module_path: str) -> ModuleType:
     return main_module
 
 
+# pylint: disable=no-else-return,inconsistent-return-statements
 def traverse_and_import(directory_path: Path) -> FastAPI:
     """Traverse through given dir and fin Fastapi app
     :param directory_path: Fast api repo path
     :return : Fast api app
     """
 
-    for root, dirs, files in os.walk(directory_path):
+    for root, _, files in os.walk(directory_path):
         for file in files:
             if file == "main.py":
                 module_path = os.path.join(root, file)
@@ -35,3 +36,4 @@ def traverse_and_import(directory_path: Path) -> FastAPI:
                     return app_object
                 else:
                     logger.error(f"No 'app' object found in {module_path}")
+                    raise FileExistsError
