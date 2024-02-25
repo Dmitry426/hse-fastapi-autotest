@@ -1,3 +1,6 @@
+__all__ = ("run_pytest", "flake8_html_report",
+           "pylint_json_report", "report_junk_folders")
+
 import json
 import logging
 import os
@@ -35,7 +38,7 @@ def run_pytest(repo_url: str, project_destination: Path, html_output_dir: Path):
     print(result.stdout)
 
 
-def run_flake8_and_generate_report(
+def flake8_html_report(
     directory_path: Path = PROJECT_ROOT / "temp_repos",
     output_directory: Path = PROJECT_ROOT / "temp_repos",
 ) -> None:
@@ -73,7 +76,7 @@ def run_flake8_and_generate_report(
         print(f"Error running flake8: {e}")
 
 
-def run_pylint_and_generate_json_report(
+def pylint_json_report(
     directory_path: Path = PROJECT_ROOT / "hse_mlops_hw",
     output_directory: Path = PROJECT_ROOT / "reports/hse_mlops_hw/pylint",
 ) -> None:
@@ -116,7 +119,7 @@ def run_pylint_and_generate_json_report(
         print(f"Error running pylint: {e}")
 
 
-def find_and_report_junk_folders(
+def report_junk_folders(
     directory_path: Path, junk_dirs: List[str] = (".idea",)
 ) -> None:
     """

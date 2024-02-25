@@ -1,3 +1,5 @@
+__all__ = 'ParamGenerator'
+
 from typing import Any, List, Optional
 
 from openapi_parser.specification import Parameter

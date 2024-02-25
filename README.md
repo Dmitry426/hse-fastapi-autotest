@@ -24,7 +24,7 @@
 ```
 
 Энрипоинты для импорта и использования в других
-приложениях находятся в сервисном слое :` hse_fastapi_autotest/services/service_layer.py`
+приложениях находятся в сервисном слое :` hse_fastapi_autotest/services/testing_services.py`
 
 ### СБОРКА
 

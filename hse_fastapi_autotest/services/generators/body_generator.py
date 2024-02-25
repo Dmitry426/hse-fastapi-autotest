@@ -1,3 +1,4 @@
+__all__ = 'BodyGenerator'
 from typing import Any
 
 from openapi_parser.specification import Property, Schema
