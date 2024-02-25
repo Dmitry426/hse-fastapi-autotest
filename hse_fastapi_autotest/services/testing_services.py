@@ -1,13 +1,23 @@
+__all__ = (
+    "run_pytest",
+    "flake8_html_report",
+    "pylint_json_report",
+    "report_junk_folders",
+)
+
 import json
 import logging
 import os
 import subprocess
+from logging import config as logging_config
 from pathlib import Path
 from typing import List
 
 from hse_fastapi_autotest import PROJECT_ROOT
+from hse_fastapi_autotest.services.helpers.log import setup_logger_config
 
-logger = logging.getLogger(__name__)
+logging_config.dictConfig(setup_logger_config("fastapi_autotest"))
+logger = logging.getLogger("fastapi_autotest")
 
 
 def run_pytest(repo_url: str, project_destination: Path, html_output_dir: Path):
@@ -32,10 +42,10 @@ def run_pytest(repo_url: str, project_destination: Path, html_output_dir: Path):
         "--self-contained-html",
     ]
     result = subprocess.run(pytest_args, check=False)
-    print(result.stdout)
+    logger.info(result.stdout)
 
 
-def run_flake8_and_generate_report(
+def flake8_html_report(
     directory_path: Path = PROJECT_ROOT / "temp_repos",
     output_directory: Path = PROJECT_ROOT / "temp_repos",
 ) -> None:
@@ -70,10 +80,10 @@ def run_flake8_and_generate_report(
             )
 
     except subprocess.CalledProcessError as e:
-        print(f"Error running flake8: {e}")
+        logger.error(f"Error running flake8: {e}")
 
 
-def run_pylint_and_generate_json_report(
+def pylint_json_report(
     directory_path: Path = PROJECT_ROOT / "hse_mlops_hw",
     output_directory: Path = PROJECT_ROOT / "reports/hse_mlops_hw/pylint",
 ) -> None:
@@ -95,28 +105,29 @@ def run_pylint_and_generate_json_report(
             pylint_command, capture_output=True, text=True, check=False
         )
 
-        print(pylint_process.stdout)
-
         if pylint_process.returncode == 0:
-            print("pylint passed without any issues.")
+            logger.info("pylint passed without any issues.")
         else:
             try:
                 json_output = json.loads(pylint_process.stdout)
+                logger.info(json_output)
             except json.JSONDecodeError:
-                print("Error: pylint did not produce valid JSON output.")
+                logger.error("Error: pylint did not produce valid JSON output.")
                 return
 
             json_report_path = output_directory / "report.json"
             with open(json_report_path, "w", encoding="utf-8") as json_file:
                 json.dump(json_output, json_file, indent=2)
 
-            print(f"pylint found issues. JSON report saved to '{json_report_path}'")
+            logger.error(
+                f"pylint found issues. JSON report saved to '{json_report_path}'"
+            )
 
     except subprocess.CalledProcessError as e:
-        print(f"Error running pylint: {e}")
+        logger.error(f"Error running pylint: {e}")
 
 
-def find_and_report_junk_folders(
+def report_junk_folders(
     directory_path: Path, junk_dirs: List[str] = (".idea",)
 ) -> None:
     """
@@ -147,9 +158,9 @@ def find_and_report_junk_folders(
                 for report_line in junk_report:
                     report_file.write(report_line + "\n")
 
-            print(f"Junk report saved to '{report_file_path}'")
+            logger.info(f"Junk report saved to '{report_file_path}'")
         else:
-            print("No junk folders found in the repository.")
+            logger.info("No junk folders found in the repository.")
 
     except subprocess.CalledProcessError as e:
-        print(f"Error checking for useless directories : {e}")
+        logger.error(f"Error checking for useless directories : {e}")

@@ -1,16 +1,13 @@
 import argparse
-import logging
 from pathlib import Path
 
 from hse_fastapi_autotest.services.helpers.utils import ensure_path, extract_repo_name
-from hse_fastapi_autotest.services.service_layer import (
-    find_and_report_junk_folders,
-    run_flake8_and_generate_report,
-    run_pylint_and_generate_json_report,
+from hse_fastapi_autotest.services.testing_services import (
+    flake8_html_report,
+    pylint_json_report,
+    report_junk_folders,
     run_pytest,
 )
-
-logger = logging.getLogger(__name__)
 
 
 def get_args():
@@ -24,8 +21,9 @@ def get_args():
 
     parser.add_argument(
         "--repo_url",
-        default="https://github.com/AnyNoth1ng/PEN_HSE_FastApi.git",
+        default="",
         help="git repository containing fastapi project url e.g. https://github.com ",
+        required=True,
     )
 
     parser.add_argument(
@@ -55,15 +53,15 @@ def run_tests() -> None:
         html_output_dir=html_output_dir,
     )
 
-    run_flake8_and_generate_report(
+    flake8_html_report(
         directory_path=lint_test_dir, output_directory=html_output_dir / "flake8_report"
     )
 
-    run_pylint_and_generate_json_report(
+    pylint_json_report(
         directory_path=lint_test_dir, output_directory=html_output_dir / "pylint_report"
     )
 
-    find_and_report_junk_folders(directory_path=lint_test_dir)
+    report_junk_folders(directory_path=lint_test_dir)
 
 
 if __name__ == "__main__":
