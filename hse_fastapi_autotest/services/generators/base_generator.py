@@ -1,4 +1,4 @@
-__all__ = 'BaseGenerator'
+__all__ = "BaseGenerator"
 
 import random
 from abc import ABC

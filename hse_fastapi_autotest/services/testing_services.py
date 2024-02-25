@@ -1,13 +1,17 @@
-__all__ = ("run_pytest", "flake8_html_report",
-           "pylint_json_report", "report_junk_folders")
+__all__ = (
+    "run_pytest",
+    "flake8_html_report",
+    "pylint_json_report",
+    "report_junk_folders",
+)
 
 import json
 import logging
 import os
 import subprocess
+from logging import config as logging_config
 from pathlib import Path
 from typing import List
-from logging import config as logging_config
 
 from hse_fastapi_autotest import PROJECT_ROOT
 from hse_fastapi_autotest.services.helpers.log import setup_logger_config
@@ -116,7 +120,8 @@ def pylint_json_report(
                 json.dump(json_output, json_file, indent=2)
 
             logger.error(
-                f"pylint found issues. JSON report saved to '{json_report_path}'")
+                f"pylint found issues. JSON report saved to '{json_report_path}'"
+            )
 
     except subprocess.CalledProcessError as e:
         logger.error(f"Error running pylint: {e}")

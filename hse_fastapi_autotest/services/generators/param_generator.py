@@ -1,4 +1,4 @@
-__all__ = 'ParamGenerator'
+__all__ = "ParamGenerator"
 
 from typing import Any, List, Optional
 

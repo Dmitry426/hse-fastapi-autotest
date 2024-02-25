@@ -1,12 +1,11 @@
 import argparse
-import logging
 from pathlib import Path
 
 from hse_fastapi_autotest.services.helpers.utils import ensure_path, extract_repo_name
 from hse_fastapi_autotest.services.testing_services import (
-    report_junk_folders,
     flake8_html_report,
     pylint_json_report,
+    report_junk_folders,
     run_pytest,
 )
 
@@ -24,14 +23,14 @@ def get_args():
         "--repo_url",
         default="",
         help="git repository containing fastapi project url e.g. https://github.com ",
-        required=True
+        required=True,
     )
 
     parser.add_argument(
         "--test_output",
         default=Path("/tmp/tested_repos"),
         help="Output directory where generated report will be stored "
-             "alongside with projest.",
+        "alongside with projest.",
     )
 
     return parser.parse_args()
