@@ -43,11 +43,11 @@ jobs:
 
       - name: Lint with flake8
         run: |
-          flake8 hse_mlops_hw || flake8 hse_fastapi_autotest --format=html --htmldir=reports/hse_fastapi_autotest/flake8/
+          flake8 hse_fastapi_autotest || flake8 hse_fastapi_autotest --format=html --htmldir=reports/hse_fastapi_autotest/flake8/
 
       - name: Lint with pylint
         run: |
-          pylint hse_mlops_hw || pylint hse_fastapi_autotest --output-format=pylint_report.CustomJsonReporter --load-plugins = "pylint_report"  | pylint_report > reports/hse_fastapi_autotest/pylint/report.html | false
+          pylint  hse_fastapi_autotest || pylint hse_fastapi_autotest --output-format=pylint_report.CustomJsonReporter --load-plugins = "pylint_report"  | pylint_report > reports/hse_fastapi_autotest/pylint/report.html | false
 
 
       - name: Upload reports
