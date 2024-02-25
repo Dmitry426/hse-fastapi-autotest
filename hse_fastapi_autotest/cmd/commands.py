@@ -10,8 +10,6 @@ from hse_fastapi_autotest.services.testing_services import (
     run_pytest,
 )
 
-logger = logging.getLogger(__name__)
-
 
 def get_args():
     parser = argparse.ArgumentParser(
@@ -33,7 +31,7 @@ def get_args():
         "--test_output",
         default=Path("/tmp/tested_repos"),
         help="Output directory where generated report will be stored "
-        "alongside with projest.",
+             "alongside with projest.",
     )
 
     return parser.parse_args()

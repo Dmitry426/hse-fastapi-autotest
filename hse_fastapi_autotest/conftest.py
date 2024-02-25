@@ -19,7 +19,7 @@ from hse_fastapi_autotest.services.helpers.utils import ensure_path, extract_rep
 
 logging.basicConfig(level=logging.INFO)
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("fastapi_autotest")
 
 
 def pytest_addoption(parser):

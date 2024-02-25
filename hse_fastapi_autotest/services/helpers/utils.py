@@ -6,7 +6,7 @@ from urllib.parse import urlparse
 
 from hse_fastapi_autotest import PROJECT_ROOT
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("fastapi_autotest")
 
 
 def extract_repo_name(repo_url: str) -> str:

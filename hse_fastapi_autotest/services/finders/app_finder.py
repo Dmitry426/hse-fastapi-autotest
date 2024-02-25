@@ -8,7 +8,7 @@ from types import ModuleType
 
 from fastapi import FastAPI
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("fastapi_autotest")
 
 
 def import_main_module(module_path: str) -> ModuleType:
