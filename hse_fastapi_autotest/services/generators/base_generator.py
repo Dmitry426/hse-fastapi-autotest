@@ -26,6 +26,7 @@ class AbstractBaseGenerator(ABC):
         raise NotImplementedError
 
 
+# pylint: disable=too-many-return-statements,no-else-return
 class BaseGenerator(AbstractBaseGenerator):
     def generate_random_value(
         self,
@@ -46,10 +47,8 @@ class BaseGenerator(AbstractBaseGenerator):
         elif data_type == DataType.BOOLEAN:
             return random.choice([True, False])
         elif data_type == DataType.ARRAY:
-            # For simplicity, return an empty list for array type
             return []
         elif data_type == DataType.OBJECT:
-            # For simplicity, return an empty dictionary for object type
             return {}
         else:
             return None

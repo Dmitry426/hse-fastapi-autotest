@@ -6,8 +6,8 @@ from pathlib import Path
 from typing import Dict
 
 import pytest
-from fastapi.testclient import TestClient
 import yaml
+from fastapi.testclient import TestClient
 from git import GitCommandError, Repo
 from openapi_parser import parse
 from openapi_parser.parser import _create_parser
@@ -41,6 +41,7 @@ def clone_repository(repo_url, destination_path):
         return repo
     except GitCommandError as e:
         logger.info(f"GitCommandError: {e}")
+        raise e
 
 
 @pytest.fixture(scope="session")
@@ -76,7 +77,9 @@ def client(test_directory) -> TestClient:
 @lru_cache(maxsize=None)
 def reference_schema() -> Specification:
     """Get reference schema"""
-    specification = parse(str(PROJECT_ROOT / "test_data" / "reference.json"))
+    specification = parse(
+        str(PROJECT_ROOT / "hse_fastapi_autotest" / "config" / "openapi.json")
+    )
     return specification
 
 

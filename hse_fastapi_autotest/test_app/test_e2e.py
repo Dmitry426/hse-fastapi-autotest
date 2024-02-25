@@ -2,15 +2,14 @@ from typing import Dict
 
 import pytest
 
-
 from hse_fastapi_autotest.conftest import reference_schema
 from hse_fastapi_autotest.services.generators.body_generator import BodyGenerator
 from hse_fastapi_autotest.services.generators.param_generator import ParamGenerator
 from hse_fastapi_autotest.services.shema_parsers.testing_metadata_parser import (
+    PathMethodCombinations,
     get_operation,
     get_request_body_schema,
     get_response_codes,
-    PathMethodCombinations,
 )
 
 

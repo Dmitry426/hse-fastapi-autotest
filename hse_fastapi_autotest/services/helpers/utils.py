@@ -23,6 +23,5 @@ def ensure_path(path: str | Path, project_root: Path = PROJECT_ROOT) -> Path:
 
     if path.is_absolute():
         return path
-    else:
-        relative = project_root / path
-        return relative
+    relative = project_root / path
+    return relative
